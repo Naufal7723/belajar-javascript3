@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body.dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
     <script src="script.js"></script>
@@ -12,18 +18,33 @@
         <label for="celsius">Masukkan suhu dalam derajat Celcius:</label>
         <input type="number" id="celsius" name="celsius" required>
         <button type="submit">Konversi</button>
-      </form>
-      
-      <p id="hasil"></p>
+    </form>
     
-      <script>
+    <p id="hasil"></p>
+
+    <button id="modeToggle">Mode Gelap</button>
+
+    <script>
         document.getElementById('konversiForm').addEventListener('submit', function (e) {
-          e.preventDefault();
-          const celsiusInput = document.getElementById('celsius');
-          const fahrenheit = (parseFloat(celsiusInput.value) * 9/5) + 32;
-          const hasil = document.getElementById('hasil');
-          hasil.textContent = `${celsiusInput.value} derajat Celcius sama dengan ${fahrenheit.toFixed(2)} derajat Fahrenheit.`;
+            e.preventDefault();
+            const celsiusInput = document.getElementById('celsius');
+            const fahrenheit = (parseFloat(celsiusInput.value) * 9/5) + 32;
+            const hasil = document.getElementById('hasil');
+            hasil.textContent = `${celsiusInput.value} derajat Celcius sama dengan ${fahrenheit.toFixed(2)} derajat Fahrenheit.`;
         });
-     </script>
+
+        const modeToggle = document.getElementById('modeToggle');
+        const body = document.body;
+
+        modeToggle.addEventListener('click', function () {
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                modeToggle.textContent = 'Mode Gelap';
+            } else {
+                body.classList.add('dark-mode');
+                modeToggle.textContent = 'Mode Terang';
+            }
+        });
+    </script>
 </body>
 </html>
